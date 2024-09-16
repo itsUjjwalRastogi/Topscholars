@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e5efc9cf1ac4229be104573ffc21bd2" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="topscholarsModel.Assignment" Width="1.5" PointX="7.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Cours" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Document" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Faculty" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Feedback" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Fee" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Result" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Student" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Timetable" Width="1.5" PointX="10.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="topscholarsModel.FK__Assignmen__Cours__46B27FE2" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Assignmen__Facul__47A6A41B" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Courses__Faculty__3E1D39E1" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Results__CourseI__51300E55" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Timetable__Cours__4A8310C6" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Documents__UserI__540C7B00" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Faculty__UserId__3B40CD36" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Timetable__Facul__4B7734FF" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Fees__StudentId__43D61337" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Results__Student__503BEA1C" ManuallyRouted="false" />
+        <AssociationConnector Association="topscholarsModel.FK__Students__UserId__40F9A68C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
