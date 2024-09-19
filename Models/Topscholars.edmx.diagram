@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6e5efc9cf1ac4229be104573ffc21bd2" Name="Diagram1" ZoomLevel="46">
-        <EntityTypeShape EntityType="topscholarsModel.Assignment" Width="1.5" PointX="7.5" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="topscholarsModel.Cours" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="topscholarsModel.Document" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+      <Diagram DiagramId="595257f9c9b64c9996b98d36765eac7f" Name="Diagram1">
+        <EntityTypeShape EntityType="topscholarsModel.Assignments" Width="1.5" PointX="7.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Courses" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Documents" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="topscholarsModel.Faculty" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="topscholarsModel.Feedback" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="topscholarsModel.Fee" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="topscholarsModel.Result" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="topscholarsModel.Student" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Fees" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Results" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Students" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
         <EntityTypeShape EntityType="topscholarsModel.Timetable" Width="1.5" PointX="10.5" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="topscholarsModel.User" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="topscholarsModel.Users" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
         <AssociationConnector Association="topscholarsModel.FK__Assignmen__Cours__46B27FE2" ManuallyRouted="false" />
         <AssociationConnector Association="topscholarsModel.FK__Assignmen__Facul__47A6A41B" ManuallyRouted="false" />
         <AssociationConnector Association="topscholarsModel.FK__Courses__Faculty__3E1D39E1" ManuallyRouted="false" />

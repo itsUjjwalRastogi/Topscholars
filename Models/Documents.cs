@@ -12,16 +12,13 @@ namespace Topscholars.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Timetable
+    public partial class Documents
     {
-        public int TimetableId { get; set; }
-        public Nullable<int> CourseId { get; set; }
-        public Nullable<int> FacultyId { get; set; }
-        public string DayOfWeek { get; set; }
-        public Nullable<System.TimeSpan> StartTime { get; set; }
-        public Nullable<System.TimeSpan> EndTime { get; set; }
+        public int DocumentId { get; set; }
+        public Nullable<int> UserId { get; set; }
+        public string Type { get; set; }
+        public byte[] Document { get; set; }
     
-        public virtual Courses Courses { get; set; }
-        public virtual Faculty Faculty { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

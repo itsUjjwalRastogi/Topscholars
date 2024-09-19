@@ -25,15 +25,15 @@ namespace Topscholars.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Assignment> Assignments { get; set; }
-        public virtual DbSet<Cours> Courses { get; set; }
-        public virtual DbSet<Document> Documents { get; set; }
-        public virtual DbSet<Faculty> Faculties { get; set; }
-        public virtual DbSet<Feedback> Feedbacks { get; set; }
-        public virtual DbSet<Fee> Fees { get; set; }
-        public virtual DbSet<Result> Results { get; set; }
-        public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<Timetable> Timetables { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Assignments> Assignments { get; set; }
+        public virtual DbSet<Courses> Courses { get; set; }
+        public virtual DbSet<Documents> Documents { get; set; }
+        public virtual DbSet<Faculty> Faculty { get; set; }
+        public virtual DbSet<Feedback> Feedback { get; set; }
+        public virtual DbSet<Fees> Fees { get; set; }
+        public virtual DbSet<Results> Results { get; set; }
+        public virtual DbSet<Students> Students { get; set; }
+        public virtual DbSet<Timetable> Timetable { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

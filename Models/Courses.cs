@@ -12,26 +12,28 @@ namespace Topscholars.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Faculty
+    public partial class Courses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Faculty()
+        public Courses()
         {
             this.Assignments = new HashSet<Assignments>();
-            this.Courses = new HashSet<Courses>();
+            this.Results = new HashSet<Results>();
             this.Timetable = new HashSet<Timetable>();
         }
     
-        public int FacultyId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public string Department { get; set; }
-        public Nullable<System.DateTime> JoiningDate { get; set; }
+        public int CourseId { get; set; }
+        public string CourseName { get; set; }
+        public string CourseDescription { get; set; }
+        public string Programme { get; set; }
+        public Nullable<int> Credits { get; set; }
+        public Nullable<int> FacultyId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Assignments> Assignments { get; set; }
+        public virtual Faculty Faculty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Courses> Courses { get; set; }
-        public virtual Users Users { get; set; }
+        public virtual ICollection<Results> Results { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Timetable> Timetable { get; set; }
     }

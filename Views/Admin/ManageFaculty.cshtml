@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Topscholars.Models.Faculty>
+
+@{
+    ViewBag.Title = "ManageFaculty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManageFaculty</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JoiningDate)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JoiningDate)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FacultyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FacultyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FacultyId })
+        </td>
+    </tr>
+}
+
+</table>
