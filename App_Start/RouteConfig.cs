@@ -15,8 +15,8 @@ namespace Topscholars
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/",
+                defaults: new { controller = "Account", action = "Login"}
             );
         }
     }

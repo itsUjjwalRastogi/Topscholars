@@ -29,19 +29,19 @@ namespace Topscholars.Controllers
                 return Redirect(Url.Action("Error", "Error"));
             }
         }
-        public ActionResult ViewFaculty(int faculty_id)
+        public ActionResult ViewFaculty(int id)
         { 
-            var faculty = db.Faculty.Find(faculty_id);
+            var faculty = db.Faculty.Find(id);
             return View(faculty);
         }
-        public ActionResult EditFaculty(int faculty_id)
+        public ActionResult EditFaculty(int id)
         {
-            var faculty = db.Faculty.Find(faculty_id);
+            var faculty = db.Faculty.Find(id);
             return View(faculty);
         }
-        public ActionResult DeleteFaculty(int faculty_id)
+        public ActionResult DeleteFaculty(int id)
         {
-            var faculty = db.Faculty.Find(faculty_id);
+            var faculty = db.Faculty.Find(id);
             return View(faculty);
         }
 
@@ -81,8 +81,8 @@ namespace Topscholars.Controllers
         {
             try
             {
-                IEnumerable<Topscholars.Models.Faculty> faculty = db.Faculty;
-                return View(faculty);
+                IEnumerable<Feedback> feedback = db.Feedback;
+                return View(feedback);
             }
             catch (Exception e)
             {
