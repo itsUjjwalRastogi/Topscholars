@@ -8,35 +8,75 @@
 <h2>ManageFaculty</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "EditFaculty")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.Email)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Department)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.JoiningDate)
         </th>
-        
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.JoiningDate)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FacultyId }) |
-            @Html.ActionLink("Details", "ViewFaculty", new { id=item.FacultyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FacultyId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoiningDate)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "EditFaculty", new { id = item.FacultyId }) |
+                @Html.ActionLink("Details", "ViewFaculty", new { id = item.FacultyId }) |
+                @Html.ActionLink("Delete", "DeleteFaculty", new { id = item.FacultyId })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var message = "@TempData["Message"]";
+        if (message == "Created") {
+            console.log(message);
+            Swal.fire({
+                title: "Faculty Added",
+                icon: "success"
+            });
+        }
+        else if (message == "Updated") {
+            console.log(message);
+            Swal.fire({
+                title: "Faculty Updated",
+                icon: "success"
+            });
+        }
+        else if (message == "Deleted") {
+            console.log(message);
+            Swal.fire({
+                title: "Faculty Deleted",
+                icon: "success"
+            });
+        }
+    });
+</script>

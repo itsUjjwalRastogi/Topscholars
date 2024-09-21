@@ -14,8 +14,9 @@ namespace Topscholars.Controllers
             return View();
         }
 
-        public ActionResult Error()
+        public ActionResult Error(Exception e)
         {
+            var error = e;
             return View();
         }
 

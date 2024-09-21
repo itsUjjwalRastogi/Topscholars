@@ -145,7 +145,7 @@
     <Compile Include="Models\Assignments.cs">
       <DependentUpon>topscholars.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\FacultyModel.cs" />
     <Compile Include="Models\Courses.cs">
       <DependentUpon>topscholars.tt</DependentUpon>
     </Compile>
@@ -164,6 +164,7 @@
     <Compile Include="Models\Results.cs">
       <DependentUpon>topscholars.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\Students.cs">
       <DependentUpon>topscholars.tt</DependentUpon>
     </Compile>

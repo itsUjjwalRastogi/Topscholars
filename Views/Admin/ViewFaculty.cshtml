@@ -1,4 +1,4 @@
-﻿@model Topscholars.Models.Faculty
+﻿@model Topscholars.Models.FacultyModel
 
 @{
     ViewBag.Title = "ViewFaculty";
@@ -12,11 +12,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Department)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt>
@@ -27,17 +43,9 @@
             @Html.DisplayFor(model => model.JoiningDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Users.Email)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.FacultyId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "EditFaculty", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "ManageFaculty")
 </p>
