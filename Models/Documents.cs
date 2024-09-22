@@ -15,7 +15,7 @@ namespace Topscholars.Models
     public partial class Documents
     {
         public int DocumentId { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int UserId { get; set; }
         public string Type { get; set; }
         public byte[] Document { get; set; }
     

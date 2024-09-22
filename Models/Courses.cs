@@ -26,8 +26,8 @@ namespace Topscholars.Models
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
         public string Programme { get; set; }
-        public Nullable<int> Credits { get; set; }
-        public Nullable<int> FacultyId { get; set; }
+        public int Credits { get; set; }
+        public int FacultyId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Assignments> Assignments { get; set; }

@@ -22,13 +22,13 @@ namespace Topscholars.Models
         }
     
         public int StudentId { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int UserId { get; set; }
         public string Programme { get; set; }
         public string RollNumber { get; set; }
-        public Nullable<int> ContactNumber { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public int ContactNumber { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
-        public Nullable<System.DateTime> AdmissionDate { get; set; }
+        public System.DateTime AdmissionDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Fees> Fees { get; set; }

@@ -15,11 +15,11 @@ namespace Topscholars.Models
     public partial class Timetable
     {
         public int TimetableId { get; set; }
-        public Nullable<int> CourseId { get; set; }
-        public Nullable<int> FacultyId { get; set; }
+        public int CourseId { get; set; }
+        public int FacultyId { get; set; }
         public string DayOfWeek { get; set; }
-        public Nullable<System.TimeSpan> StartTime { get; set; }
-        public Nullable<System.TimeSpan> EndTime { get; set; }
+        public System.TimeSpan StartTime { get; set; }
+        public System.TimeSpan EndTime { get; set; }
     
         public virtual Courses Courses { get; set; }
         public virtual Faculty Faculty { get; set; }

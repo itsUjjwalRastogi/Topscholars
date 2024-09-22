@@ -15,11 +15,11 @@ namespace Topscholars.Models
     public partial class Assignments
     {
         public int AssignmentId { get; set; }
-        public Nullable<int> CourseId { get; set; }
-        public Nullable<int> FacultyId { get; set; }
+        public int CourseId { get; set; }
+        public int FacultyId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public Nullable<System.DateTime> DueDate { get; set; }
+        public System.DateTime DueDate { get; set; }
     
         public virtual Courses Courses { get; set; }
         public virtual Faculty Faculty { get; set; }

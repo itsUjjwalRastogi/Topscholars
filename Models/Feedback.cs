@@ -16,6 +16,6 @@ namespace Topscholars.Models
     {
         public int FeedbackId { get; set; }
         public string FeedbackText { get; set; }
-        public Nullable<System.DateTime> DateSubmitted { get; set; }
+        public System.DateTime DateSubmitted { get; set; }
     }
 }

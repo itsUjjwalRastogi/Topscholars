@@ -15,9 +15,9 @@ namespace Topscholars.Models
     public partial class Fees
     {
         public int FeeId { get; set; }
-        public Nullable<int> StudentId { get; set; }
-        public Nullable<decimal> Amount { get; set; }
-        public Nullable<System.DateTime> DueDate { get; set; }
+        public int StudentId { get; set; }
+        public decimal Amount { get; set; }
+        public System.DateTime DueDate { get; set; }
         public string Status { get; set; }
     
         public virtual Students Students { get; set; }

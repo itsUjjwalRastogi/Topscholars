@@ -143,51 +143,52 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Assignments.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FacultyModel.cs" />
     <Compile Include="Models\Courses.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Documents.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Faculty.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FacultyModel.cs" />
     <Compile Include="Models\Feedback.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fees.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Results.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\Students.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Timetable.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\topscholars.Context.cs">
+    <Compile Include="Models\TimetableModel.cs" />
+    <Compile Include="Models\Topscholars.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>topscholars.Context.tt</DependentUpon>
+      <DependentUpon>Topscholars.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\topscholars.cs">
+    <Compile Include="Models\Topscholars.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\topscholars.Designer.cs">
+    <Compile Include="Models\Topscholars.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>topscholars.edmx</DependentUpon>
+      <DependentUpon>Topscholars.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>topscholars.tt</DependentUpon>
+      <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -201,29 +202,29 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\Logo_Circle.png" />
-    <Content Include="Models\topscholars.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>topscholars.edmx</DependentUpon>
-      <LastGenOutput>topscholars.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\topscholars.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>topscholars.edmx</DependentUpon>
-      <LastGenOutput>topscholars.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <EntityDeploy Include="Models\topscholars.edmx">
+    <EntityDeploy Include="Models\Topscholars.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>topscholars.Designer.cs</LastGenOutput>
+      <LastGenOutput>Topscholars.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\topscholars.edmx.diagram">
-      <DependentUpon>topscholars.edmx</DependentUpon>
+    <Content Include="Models\Topscholars.edmx.diagram">
+      <DependentUpon>Topscholars.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Models\Topscholars.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Topscholars.edmx</DependentUpon>
+      <LastGenOutput>Topscholars.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Topscholars.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Topscholars.edmx</DependentUpon>
+      <LastGenOutput>Topscholars.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\dataTables.min.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -259,6 +260,7 @@
     <Content Include="Views\Admin\ViewStudents.cshtml" />
     <Content Include="Views\Admin\EditStudent.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Admin\Timetable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

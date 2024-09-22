@@ -10,66 +10,66 @@
             <PropertyRef Name="AssignmentId" />
           </Key>
           <Property Name="AssignmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CourseId" Type="int" />
-          <Property Name="FacultyId" Type="int" />
-          <Property Name="Title" Type="nvarchar" MaxLength="255" />
-          <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="DueDate" Type="date" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="FacultyId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DueDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Courses">
           <Key>
             <PropertyRef Name="CourseId" />
           </Key>
           <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CourseName" Type="nvarchar" MaxLength="100" />
-          <Property Name="CourseDescription" Type="nvarchar" MaxLength="255" />
-          <Property Name="Programme" Type="varchar" MaxLength="50" />
-          <Property Name="Credits" Type="int" />
-          <Property Name="FacultyId" Type="int" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CourseDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Programme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Credits" Type="int" Nullable="false" />
+          <Property Name="FacultyId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Documents">
           <Key>
             <PropertyRef Name="DocumentId" />
           </Key>
           <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="int" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" />
-          <Property Name="Document" Type="varbinary(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Document" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="FacultyId" />
           </Key>
           <Property Name="FacultyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="int" />
-          <Property Name="Department" Type="nvarchar" MaxLength="100" />
-          <Property Name="JoiningDate" Type="date" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="JoiningDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Feedback">
           <Key>
             <PropertyRef Name="FeedbackId" />
           </Key>
           <Property Name="FeedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FeedbackText" Type="nvarchar" MaxLength="1000" />
-          <Property Name="DateSubmitted" Type="date" />
+          <Property Name="FeedbackText" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DateSubmitted" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Fees">
           <Key>
             <PropertyRef Name="FeeId" />
           </Key>
           <Property Name="FeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StudentId" Type="int" />
-          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="DueDate" Type="date" />
-          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DueDate" Type="date" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Results">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StudentId" Type="int" />
-          <Property Name="CourseId" Type="int" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
           <Property Name="Score" Type="int" />
         </EntityType>
         <EntityType Name="Students">
@@ -77,37 +77,37 @@
             <PropertyRef Name="StudentId" />
           </Key>
           <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="int" />
-          <Property Name="Programme" Type="varchar" MaxLength="50" />
-          <Property Name="RollNumber" Type="varchar" MaxLength="10" />
-          <Property Name="ContactNumber" Type="int" />
-          <Property Name="DateOfBirth" Type="date" />
-          <Property Name="Address" Type="varchar" MaxLength="200" />
-          <Property Name="AdmissionDate" Type="date" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Programme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RollNumber" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ContactNumber" Type="int" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AdmissionDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Timetable">
           <Key>
             <PropertyRef Name="TimetableId" />
           </Key>
           <Property Name="TimetableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CourseId" Type="int" />
-          <Property Name="FacultyId" Type="int" />
-          <Property Name="DayOfWeek" Type="varchar" MaxLength="10" />
-          <Property Name="StartTime" Type="time" Precision="7" />
-          <Property Name="EndTime" Type="time" Precision="7" />
+          <Property Name="CourseId" Type="int" Nullable="false" />
+          <Property Name="FacultyId" Type="int" Nullable="false" />
+          <Property Name="DayOfWeek" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK__Assignmen__Cours__46B27FE2">
-          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
           <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -119,7 +119,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Assignmen__Facul__47A6A41B">
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
           <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
@@ -131,7 +131,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Courses__Faculty__3E1D39E1">
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
           <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
@@ -143,7 +143,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Documents__UserI__540C7B00">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -155,7 +155,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Faculty__UserId__3B40CD36">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -167,7 +167,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Fees__StudentId__43D61337">
-          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
           <End Role="Fees" Type="Self.Fees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
@@ -179,7 +179,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Results__CourseI__51300E55">
-          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
           <End Role="Results" Type="Self.Results" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -191,7 +191,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Results__Student__503BEA1C">
-          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
           <End Role="Results" Type="Self.Results" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
@@ -203,7 +203,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Students__UserId__40F9A68C">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Students" Type="Self.Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -215,7 +215,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Timetable__Cours__4A8310C6">
-          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
           <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -227,7 +227,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Timetable__Facul__4B7734FF">
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
           <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
@@ -304,11 +304,11 @@
             <PropertyRef Name="AssignmentId" />
           </Key>
           <Property Name="AssignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseId" Type="Int32" />
-          <Property Name="FacultyId" Type="Int32" />
-          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DueDate" Type="DateTime" Precision="0" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="FacultyId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Courses" Relationship="Self.FK__Assignmen__Cours__46B27FE2" FromRole="Assignments" ToRole="Courses" />
           <NavigationProperty Name="Faculty" Relationship="Self.FK__Assignmen__Facul__47A6A41B" FromRole="Assignments" ToRole="Faculty" />
         </EntityType>
@@ -317,11 +317,11 @@
             <PropertyRef Name="CourseId" />
           </Key>
           <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CourseDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Programme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Credits" Type="Int32" />
-          <Property Name="FacultyId" Type="Int32" />
+          <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CourseDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Programme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Credits" Type="Int32" Nullable="false" />
+          <Property Name="FacultyId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Assignments" Relationship="Self.FK__Assignmen__Cours__46B27FE2" FromRole="Courses" ToRole="Assignments" />
           <NavigationProperty Name="Faculty" Relationship="Self.FK__Courses__Faculty__3E1D39E1" FromRole="Courses" ToRole="Faculty" />
           <NavigationProperty Name="Results" Relationship="Self.FK__Results__CourseI__51300E55" FromRole="Courses" ToRole="Results" />
@@ -332,9 +332,9 @@
             <PropertyRef Name="DocumentId" />
           </Key>
           <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Document" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Documents__UserI__540C7B00" FromRole="Documents" ToRole="Users" />
         </EntityType>
         <EntityType Name="Faculty">
@@ -342,9 +342,9 @@
             <PropertyRef Name="FacultyId" />
           </Key>
           <Property Name="FacultyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="JoiningDate" Type="DateTime" Precision="0" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Assignments" Relationship="Self.FK__Assignmen__Facul__47A6A41B" FromRole="Faculty" ToRole="Assignments" />
           <NavigationProperty Name="Courses" Relationship="Self.FK__Courses__Faculty__3E1D39E1" FromRole="Faculty" ToRole="Courses" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Faculty__UserId__3B40CD36" FromRole="Faculty" ToRole="Users" />
@@ -355,18 +355,18 @@
             <PropertyRef Name="FeedbackId" />
           </Key>
           <Property Name="FeedbackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FeedbackText" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="DateSubmitted" Type="DateTime" Precision="0" />
+          <Property Name="FeedbackText" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateSubmitted" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Fees">
           <Key>
             <PropertyRef Name="FeeId" />
           </Key>
           <Property Name="FeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="DueDate" Type="DateTime" Precision="0" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Students" Relationship="Self.FK__Fees__StudentId__43D61337" FromRole="Fees" ToRole="Students" />
         </EntityType>
         <EntityType Name="Results">
@@ -374,8 +374,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="CourseId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
           <Property Name="Score" Type="Int32" />
           <NavigationProperty Name="Courses" Relationship="Self.FK__Results__CourseI__51300E55" FromRole="Results" ToRole="Courses" />
           <NavigationProperty Name="Students" Relationship="Self.FK__Results__Student__503BEA1C" FromRole="Results" ToRole="Students" />
@@ -385,13 +385,13 @@
             <PropertyRef Name="StudentId" />
           </Key>
           <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="Programme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RollNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ContactNumber" Type="Int32" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
-          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="AdmissionDate" Type="DateTime" Precision="0" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Programme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RollNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNumber" Type="Int32" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdmissionDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Fees" Relationship="Self.FK__Fees__StudentId__43D61337" FromRole="Students" ToRole="Fees" />
           <NavigationProperty Name="Results" Relationship="Self.FK__Results__Student__503BEA1C" FromRole="Students" ToRole="Results" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Students__UserId__40F9A68C" FromRole="Students" ToRole="Users" />
@@ -401,11 +401,11 @@
             <PropertyRef Name="TimetableId" />
           </Key>
           <Property Name="TimetableId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseId" Type="Int32" />
-          <Property Name="FacultyId" Type="Int32" />
-          <Property Name="DayOfWeek" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="StartTime" Type="Time" Precision="7" />
-          <Property Name="EndTime" Type="Time" Precision="7" />
+          <Property Name="CourseId" Type="Int32" Nullable="false" />
+          <Property Name="FacultyId" Type="Int32" Nullable="false" />
+          <Property Name="DayOfWeek" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="Courses" Relationship="Self.FK__Timetable__Cours__4A8310C6" FromRole="Timetable" ToRole="Courses" />
           <NavigationProperty Name="Faculty" Relationship="Self.FK__Timetable__Facul__4B7734FF" FromRole="Timetable" ToRole="Faculty" />
         </EntityType>
@@ -414,16 +414,16 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Documents" Relationship="Self.FK__Documents__UserI__540C7B00" FromRole="Users" ToRole="Documents" />
           <NavigationProperty Name="Faculty" Relationship="Self.FK__Faculty__UserId__3B40CD36" FromRole="Users" ToRole="Faculty" />
           <NavigationProperty Name="Students" Relationship="Self.FK__Students__UserId__40F9A68C" FromRole="Users" ToRole="Students" />
         </EntityType>
         <Association Name="FK__Assignmen__Cours__46B27FE2">
-          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
           <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -435,7 +435,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Assignmen__Facul__47A6A41B">
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
           <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
@@ -447,7 +447,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Courses__Faculty__3E1D39E1">
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
           <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
@@ -459,7 +459,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Results__CourseI__51300E55">
-          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
           <End Role="Results" Type="Self.Results" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -471,7 +471,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Timetable__Cours__4A8310C6">
-          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
           <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -483,7 +483,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Documents__UserI__540C7B00">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -495,7 +495,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Faculty__UserId__3B40CD36">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -507,7 +507,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Timetable__Facul__4B7734FF">
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
           <End Role="Timetable" Type="Self.Timetable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
@@ -519,7 +519,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Fees__StudentId__43D61337">
-          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
           <End Role="Fees" Type="Self.Fees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
@@ -531,7 +531,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Results__Student__503BEA1C">
-          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
           <End Role="Results" Type="Self.Results" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
@@ -543,7 +543,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Students__UserId__40F9A68C">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Students" Type="Self.Students" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">

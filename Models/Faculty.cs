@@ -23,9 +23,9 @@ namespace Topscholars.Models
         }
     
         public int FacultyId { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int UserId { get; set; }
         public string Department { get; set; }
-        public Nullable<System.DateTime> JoiningDate { get; set; }
+        public System.DateTime JoiningDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Assignments> Assignments { get; set; }

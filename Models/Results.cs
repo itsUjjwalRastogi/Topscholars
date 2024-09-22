@@ -15,8 +15,8 @@ namespace Topscholars.Models
     public partial class Results
     {
         public int Id { get; set; }
-        public Nullable<int> StudentId { get; set; }
-        public Nullable<int> CourseId { get; set; }
+        public int StudentId { get; set; }
+        public int CourseId { get; set; }
         public Nullable<int> Score { get; set; }
     
         public virtual Courses Courses { get; set; }
