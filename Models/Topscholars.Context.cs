@@ -35,7 +35,6 @@ namespace Topscholars.Models
         public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<Timetable> Timetable { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-
-        public System.Data.Entity.DbSet<Topscholars.Models.TimetableModel> TimetableModels { get; set; }
+        public virtual DbSet<Programme> Programme { get; set; }
     }
 }

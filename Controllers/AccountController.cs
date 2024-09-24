@@ -17,6 +17,8 @@ namespace Topscholars.Controllers
 
         public ActionResult Login(Users model)
         {
+            model.Email = "alice@university.com";
+            model.Password = "hashedpassword4";
             if (model.Email != null && model.Password != null)
             {
                 var user = db.Users.Where(x => x.Email == model.Email).FirstOrDefault();
@@ -25,7 +27,7 @@ namespace Topscholars.Controllers
                     FormsAuthentication.SetAuthCookie(user.FullName, false);
                     Session["UserID"] = user.UserId;
                     Session["Role"] = user.Role;
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Index", "Student");
                 }
             }
             return View();

@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FacultyName)
+            @Html.DisplayNameFor(model => model.Day)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CourseName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Day)
+            @Html.DisplayNameFor(model => model.FacultyName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StartTime)
@@ -33,13 +33,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FacultyName)
+            @Html.DisplayFor(modelItem => item.Day)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CourseName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Day)
+            @Html.DisplayFor(modelItem => item.FacultyName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartTime)
@@ -56,31 +56,3 @@
 }
 
 </table>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        var message = "@TempData["Message"]";
-        if (message == "Created") {
-            console.log(message);
-            Swal.fire({
-                title: "Faculty Added",
-                icon: "success"
-            });
-        }
-        else if (message == "Updated") {
-            console.log(message);
-            Swal.fire({
-                title: "Faculty Updated",
-                icon: "success"
-            });
-        }
-        else if (message == "Deleted") {
-            console.log(message);
-            Swal.fire({
-                title: "Faculty Deleted",
-                icon: "success"
-            });
-        }
-    });
-</script>

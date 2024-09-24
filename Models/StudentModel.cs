@@ -11,10 +11,10 @@ namespace Topscholars.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Programme { get; set; }
-        public int RollNumber { get; set;}
-        public int ContantNumber { get; set; }
+        public string RollNumber { get; set;}
+        public int ContactNumber { get; set; }
         public DateTime DOB { get; set; }
         public string Address {  get; set; }
-        public DateTime AddmissionDate { get; set; }
+        public DateTime AdmissionDate { get; set; }
     }
 }

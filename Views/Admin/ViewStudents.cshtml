@@ -1,4 +1,4 @@
-﻿@model Topscholars.Models.Students
+﻿@model Topscholars.Models.StudentModel
 
 @{
     ViewBag.Title = "ViewStudents";
@@ -8,9 +8,25 @@
 <h2>ViewStudents</h2>
 
 <div>
-    <h4>Students</h4>
+    <h4>StudentModel</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Programme)
         </dt>
@@ -36,11 +52,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
+            @Html.DisplayNameFor(model => model.DOB)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateOfBirth)
+            @Html.DisplayFor(model => model.DOB)
         </dd>
 
         <dt>
@@ -59,17 +75,9 @@
             @Html.DisplayFor(model => model.AdmissionDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Users.Email)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "EditStudent", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "ManageStudent")
 </p>

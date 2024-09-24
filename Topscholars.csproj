@@ -148,6 +148,7 @@
     <Compile Include="Models\Courses.cs">
       <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CoursesModel.cs" />
     <Compile Include="Models\Documents.cs">
       <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
@@ -159,6 +160,9 @@
       <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fees.cs">
+      <DependentUpon>Topscholars.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Programme.cs">
       <DependentUpon>Topscholars.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Results.cs">
@@ -255,17 +259,23 @@
     <Content Include="Views\Admin\ManageFaculty.cshtml" />
     <Content Include="Views\Admin\ViewFaculty.cshtml" />
     <Content Include="Views\Admin\EditFaculty.cshtml" />
-    <Content Include="Views\Admin\AddEntry.cshtml" />
     <Content Include="Views\Admin\EditEntry.cshtml" />
-    <Content Include="Views\Admin\ViewStudents.cshtml" />
-    <Content Include="Views\Admin\EditStudent.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Admin\Timetable.cshtml" />
+    <Content Include="Views\Admin\ManageStudent.cshtml" />
+    <Content Include="Views\Admin\ViewStudents.cshtml" />
+    <Content Include="Views\Admin\EditStudent.cshtml" />
+    <Content Include="Views\Admin\ManageCourses.cshtml" />
+    <Content Include="Views\Admin\EditCourses.cshtml" />
+    <Content Include="Views\Student\Assignment.cshtml" />
+    <Content Include="Views\Student\Fees.cshtml" />
+    <Content Include="Views\Student\Feedback.cshtml" />
+    <Content Include="Views\Student\Timetable.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Faculty\" />
-    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

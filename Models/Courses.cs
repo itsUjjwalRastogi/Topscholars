@@ -25,9 +25,9 @@ namespace Topscholars.Models
         public int CourseId { get; set; }
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
-        public string Programme { get; set; }
         public int Credits { get; set; }
         public int FacultyId { get; set; }
+        public int ProgrammeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Assignments> Assignments { get; set; }
@@ -36,5 +36,6 @@ namespace Topscholars.Models
         public virtual ICollection<Results> Results { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Timetable> Timetable { get; set; }
+        public virtual Programme Programme { get; set; }
     }
 }

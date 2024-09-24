@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Topscholars.Models.StudentModel>
+
+@{
+    ViewBag.Title = "ManageStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManageStudent</h2>
+
+<p>
+    @Html.ActionLink("Create New", "EditStudent")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Programme)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RollNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdmissionDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Programme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RollNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdmissionDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditStudent", new { id = item.ID }) |
+                @Html.ActionLink("Details", "ViewStudents", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "DeleteStudent", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var message = "@TempData["Message"]";
+        if (message == "Created") {
+            console.log(message);
+            Swal.fire({
+                title: "Faculty Added",
+                icon: "success"
+            });
+        }
+        else if (message == "Updated") {
+            console.log(message);
+            Swal.fire({
+                title: "Faculty Updated",
+                icon: "success"
+            });
+        }
+        else if (message == "Deleted") {
+            console.log(message);
+            Swal.fire({
+                title: "Faculty Deleted",
+                icon: "success"
+            });
+        }
+    });
+</script>

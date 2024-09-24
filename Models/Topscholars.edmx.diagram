@@ -26,6 +26,9 @@
         <AssociationConnector Association="topscholarsModel.FK__Fees__StudentId__43D61337" ManuallyRouted="false" />
         <AssociationConnector Association="topscholarsModel.FK__Results__Student__503BEA1C" ManuallyRouted="false" />
         <AssociationConnector Association="topscholarsModel.FK__Students__UserId__40F9A68C" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="topscholarsModel.Programme" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="topscholarsModel.FK__Courses__Program__2CBDA3B5" />
+        <AssociationConnector Association="topscholarsModel.FK__Students__Progra__2BC97F7C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

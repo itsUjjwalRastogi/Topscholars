@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<ul>
+    <li>
+        <a href="@Url.Action("Assignment", "Student")">Assignments</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Fees", "Student")">Pay Fees</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Feedback", "Student")">Submit Feedback</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Timetable", "Student")">View TimeTable</a>
+    </li>
+</ul>

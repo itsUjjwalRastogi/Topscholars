@@ -17,5 +17,6 @@ namespace Topscholars.Models
         public int FeedbackId { get; set; }
         public string FeedbackText { get; set; }
         public System.DateTime DateSubmitted { get; set; }
+        public string Status { get; set; }
     }
 }

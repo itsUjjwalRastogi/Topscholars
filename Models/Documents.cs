@@ -18,6 +18,8 @@ namespace Topscholars.Models
         public int UserId { get; set; }
         public string Type { get; set; }
         public byte[] Document { get; set; }
+        public string DocumentName { get; set; }
+        public string DocumentType { get; set; }
     
         public virtual Users Users { get; set; }
     }

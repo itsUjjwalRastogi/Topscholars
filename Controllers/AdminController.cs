@@ -6,10 +6,12 @@ using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 using Topscholars.Models;
 
 namespace Topscholars.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         topscholarsEntities db = new topscholarsEntities();
@@ -231,7 +233,6 @@ namespace Topscholars.Controllers
                                                     Value = c.CourseId.ToString(),
                                                     Text = c.CourseName,
                                                 }).ToList();
-
                 List<string> daysofweek = new List<string>(new string[] { "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday" });
                 List<SelectListItem> days = (from d in daysofweek
                                              select new SelectListItem
@@ -258,7 +259,7 @@ namespace Topscholars.Controllers
                 if (timetable != null)
                 {
                     return View(timetable);
-                }                
+                }
                 return View();
             }
             catch (Exception e)
@@ -289,23 +290,171 @@ namespace Topscholars.Controllers
         {
             try
             {
-                IEnumerable<Topscholars.Models.Faculty> faculty = db.Faculty;
-                return View(faculty);
+                var student = (from s in db.Students
+                               select new StudentModel
+                               {
+                                   ID = s.StudentId,
+                                   Name = s.Users.FullName,
+                                   Email = s.Users.Email,
+                                   Programme = s.Programme.ProgrammeName,
+                                   RollNumber = s.RollNumber,
+                                   ContactNumber = s.ContactNumber,
+                                   Address = s.Address,
+                                   DOB = s.DateOfBirth,
+                                   AdmissionDate = s.AdmissionDate
+                               }).ToList();
+                return View(student);
             }
             catch (Exception e)
             {
                 return RedirectToAction("Error", "Error", e);
             }
         }
-        public ActionResult ViewStudents() { return View(); }
-        public ActionResult EditStudent() { return View(); }
-        public ActionResult DeleteStudent() { return View(); }
+
+        public ActionResult ViewStudents(int id)
+        {
+            try
+            {
+                var student = (from s in db.Students
+                               where s.StudentId == id
+                               select new StudentModel
+                               {
+                                   ID = s.StudentId,
+                                   Name = s.Users.FullName,
+                                   Email = s.Users.Email,
+                                   Programme = s.Programme.ProgrammeName,
+                                   RollNumber = s.RollNumber,
+                                   ContactNumber = s.ContactNumber,
+                                   Address = s.Address,
+                                   DOB = s.DateOfBirth,
+                                   AdmissionDate = s.AdmissionDate
+                               }).FirstOrDefault();
+                return View(student);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult AddStudents(StudentModel model)
+        {
+            try
+            {
+                var student = db.Students.Find(model.ID);
+                if (student != null)
+                {
+                    //student.Programme = model.Programme;
+                    student.Address = model.Address;
+                    student.ContactNumber = model.ContactNumber;
+                    student.DateOfBirth = model.DOB;
+                    db.Entry(student).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    var users = db.Users.Find(student.UserId);
+                    users.Email = model.Email;
+                    users.FullName = model.Name;
+                    db.Entry(users).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["Message"] = "Updated";
+                }
+                else
+                {
+                    Users newusers = new Users
+                    {
+                        FullName = model.Name,
+                        Email = model.Email,
+                        Role = "Student",
+                        Password = "",
+                    };
+                    db.Users.Add(newusers);
+                    db.Entry(newusers).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    var users = db.Users.Where(x => x.Email == newusers.Email).FirstOrDefault();
+                    Students newstudent = new Students
+                    {
+                        UserId = users.UserId,
+                        Address = model.Address,
+                        ContactNumber = model.ContactNumber,
+                        DateOfBirth = model.DOB,
+                        //Programme = model.Programme,
+                        AdmissionDate = DateTime.Now,
+                    };
+                    db.Students.Add(newstudent);
+                    db.Entry(newstudent).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    TempData["Message"] = "Created";
+                }
+                return RedirectToAction("ManageStudent");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult EditStudent(int? id)
+        {
+            try
+            {
+                List<SelectListItem> programme = (from c in db.Courses
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = c.Programme.ProgrammeName,
+                                                      Value = c.Programme.ProgrammeId.ToString(),
+                                                  }).ToList();
+                ViewBag.Programme = programme;
+                var student = (from s in db.Students
+                               where s.StudentId == id
+                               select new StudentModel
+                               {
+                                   ID = s.StudentId,
+                                   Name = s.Users.FullName,
+                                   Email = s.Users.Email,
+                                   Programme = s.Programme.ProgrammeName,
+                                   RollNumber = s.RollNumber,
+                                   ContactNumber = s.ContactNumber,
+                                   Address = s.Address,
+                                   DOB = s.DateOfBirth,
+                                   AdmissionDate = s.AdmissionDate
+                               }).FirstOrDefault();
+                if (student != null)
+                {
+                    return View(student);
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult DeleteStudent(int id)
+        {
+            try
+            {
+                var student = db.Students.Find(id);
+                var user = db.Users.Find(student.UserId);
+                db.Students.Remove(student);
+                db.Entry(student).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+                db.Users.Remove(user);
+                db.Entry(user).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+                TempData["Message"] = "Deleted";
+                return RedirectToAction("ManageStudent");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
 
         public ActionResult Feedback()
         {
             try
             {
-                IEnumerable<Feedback> feedback = db.Feedback;
+                IEnumerable<Feedback> feedback = db.Feedback.Where(x => x.Status == "Pending");
                 return View(feedback);
             }
             catch (Exception e)
@@ -313,7 +462,128 @@ namespace Topscholars.Controllers
                 return RedirectToAction("Error", "Error", e);
             }
         }
-        public ActionResult ProcessedFeedback() { return View(); }
-        public ActionResult DeleteFeedback() { return View(); }
+
+        public ActionResult ProcessedFeedback(int id)
+        {
+            var feedback = db.Feedback.Find(id);
+            feedback.Status = "Processed";
+            db.Entry(feedback).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            TempData["Message"] = "Updated";
+            return RedirectToAction("Feedback");
+        }
+
+        public ActionResult DeleteFeedback(int id)
+        {
+            var feedback = db.Feedback.Find(id);
+            db.Feedback.Remove(feedback);
+            db.Entry(feedback).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            TempData["Message"] = "Deleted";
+            return RedirectToAction("Feedback");
+        }
+
+        public ActionResult ManageCourses()
+        {
+            try
+            {
+                var courses = (from c in db.Courses
+                               orderby c.Programme
+                               select new CoursesModel
+                               {
+                                   ID = c.CourseId,
+                                   Name = c.CourseName,
+                                   Description = c.CourseDescription,
+                                   Programme = c.Programme.ProgrammeName,
+                                   Credit = c.Credits,
+                                   FacultyID = c.FacultyId,
+                                   FacultyName = c.Faculty.Users.FullName,
+                               }).ToList();
+                return View(courses);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult AddCourses(CoursesModel model)
+        {
+            try
+            {
+                var course = db.Courses.Find(model.ID);
+                if (course != null)
+                {
+                    course.FacultyId = model.FacultyID;
+                    db.Entry(course).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();                    
+                    TempData["Message"] = "Updated";
+                }
+                else
+                {
+                    var newcourse = new Courses { 
+                        CourseName = model.Name,
+                        CourseDescription = model.Description,
+                        Credits = model.Credit,
+                        //Programme = model.Programme,
+                        FacultyId = model.FacultyID                        
+                    };
+                    db.Courses.Add(newcourse);
+                    db.Entry(newcourse).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    TempData["Message"] = "Created";
+                }
+                return RedirectToAction("ManageCourses");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult EditCourses(int? id)
+        {
+            try
+            {
+                var courses = (from c in db.Courses
+                               where c.CourseId == id
+                               select new CoursesModel
+                               {
+                                   ID = c.CourseId,
+                                   Name = c.CourseName,
+                                   Description = c.CourseDescription,
+                                   Programme = c.Programme.ProgrammeName,
+                                   Credit = c.Credits,
+                                   FacultyID = c.FacultyId,
+                                   FacultyName = c.Faculty.Users.FullName,
+                               }).FirstOrDefault();
+                if(courses != null)
+                {
+                    return View(courses);
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult DeleteCourses(int id)
+        {
+            try
+            {
+                var courses = db.Courses.Find(id);
+                db.Courses.Remove(courses);
+                db.Entry(courses).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+                TempData["Message"] = "Deleted";
+                return RedirectToAction("ManageCourses");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
     }
 }
