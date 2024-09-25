@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ViewAssignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Topscholars.Models.TimetableModel>
+
+<h2>Your Timetable</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Course</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var schedule in Model)
+        {
+            <tr>
+                <td>@schedule.Day</td>
+                <td>@schedule.StartTime</td>
+                <td>@schedule.EndTime</td>
+                <td>@schedule.CourseName</td>
+            </tr>
+        }
+    </tbody>
+</table>

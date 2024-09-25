@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "ViewAssignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Topscholars.Models.Feedback
+
+<h2>Provide Feedback</h2>
+
+@using (Html.BeginForm("SubmitFeedback","Student",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="Comments">Your Feedback</label>
+        @Html.TextAreaFor(m => m.FeedbackText, new { @class = "form-control", rows = 5 })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+}

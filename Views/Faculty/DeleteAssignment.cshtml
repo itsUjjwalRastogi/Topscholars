@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "ViewAssignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Topscholars.Models.Assignments
+
+<h2>Delete Assignment</h2>
+
+<p>Are you sure you want to delete this assignment?</p>
+
+<p>
+    Title: @Model.Title <br />
+    Due Date: @Model.DueDate.ToString("yyyy-MM-dd")
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("ViewAssignments")" class="btn btn-secondary">Cancel</a>
+}

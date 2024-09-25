@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "ViewAssignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Topscholars.Models.Assignments
+
+<h2>Edit Assignment</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.AssignmentId)
+
+    <div class="form-group">
+        <label for="Title">Title</label>
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label for="DueDate">Due Date</label>
+        @Html.TextBoxFor(m => m.DueDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+
+    <div class="form-group">
+        <label for="CourseId">Course</label>
+        @Html.DropDownListFor(m => m.CourseId, (SelectList)ViewBag.Courses, "Select Course", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

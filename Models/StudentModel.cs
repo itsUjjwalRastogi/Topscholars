@@ -10,6 +10,7 @@ namespace Topscholars.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public int ProgrammeID { get; set; }
         public string Programme { get; set; }
         public string RollNumber { get; set;}
         public int ContactNumber { get; set; }

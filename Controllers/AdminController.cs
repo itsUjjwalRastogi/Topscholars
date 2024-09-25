@@ -221,18 +221,18 @@ namespace Topscholars.Controllers
         {
             try
             {
-                List<SelectListItem> faculty = (from f in db.Faculty
-                                                select new SelectListItem
-                                                {
-                                                    Text = f.Users.FullName,
-                                                    Value = f.FacultyId.ToString()
-                                                }).ToList();
-                List<SelectListItem> courses = (from c in db.Courses
-                                                select new SelectListItem
-                                                {
-                                                    Value = c.CourseId.ToString(),
-                                                    Text = c.CourseName,
-                                                }).ToList();
+                //List<SelectListItem> faculty = (from f in db.Faculty
+                //                                select new SelectListItem
+                //                                {
+                //                                    Text = f.Users.FullName,
+                //                                    Value = f.FacultyId.ToString()
+                //                                }).ToList();
+                //List<SelectListItem> courses = (from c in db.Courses
+                //                                select new SelectListItem
+                //                                {
+                //                                    Value = c.CourseId.ToString(),
+                //                                    Text = c.CourseName,
+                //                                }).ToList();
                 List<string> daysofweek = new List<string>(new string[] { "Monday", "Tuesday", "Wednesday", "Thrusday", "Friday" });
                 List<SelectListItem> days = (from d in daysofweek
                                              select new SelectListItem
@@ -240,8 +240,8 @@ namespace Topscholars.Controllers
                                                  Text = d,
                                                  Value = d
                                              }).ToList();
-                ViewBag.Faculty = faculty;
-                ViewBag.Courses = courses;
+                ViewBag.Courses = new SelectList(db.Courses, "CourseId", "CourseName");
+                ViewBag.Faculty = new SelectList(db.Faculty, "FacultyId", "Users.FullName");
                 ViewBag.days = days;
                 var timetable = (from x in db.Timetable
                                  where x.TimetableId == id
@@ -296,6 +296,7 @@ namespace Topscholars.Controllers
                                    ID = s.StudentId,
                                    Name = s.Users.FullName,
                                    Email = s.Users.Email,
+                                   ProgrammeID = s.ProgrammeId,
                                    Programme = s.Programme.ProgrammeName,
                                    RollNumber = s.RollNumber,
                                    ContactNumber = s.ContactNumber,
@@ -322,6 +323,7 @@ namespace Topscholars.Controllers
                                    ID = s.StudentId,
                                    Name = s.Users.FullName,
                                    Email = s.Users.Email,
+                                   ProgrammeID = s.ProgrammeId,
                                    Programme = s.Programme.ProgrammeName,
                                    RollNumber = s.RollNumber,
                                    ContactNumber = s.ContactNumber,
@@ -344,7 +346,7 @@ namespace Topscholars.Controllers
                 var student = db.Students.Find(model.ID);
                 if (student != null)
                 {
-                    //student.Programme = model.Programme;
+                    student.ProgrammeId = model.ProgrammeID;
                     student.Address = model.Address;
                     student.ContactNumber = model.ContactNumber;
                     student.DateOfBirth = model.DOB;
@@ -376,7 +378,7 @@ namespace Topscholars.Controllers
                         Address = model.Address,
                         ContactNumber = model.ContactNumber,
                         DateOfBirth = model.DOB,
-                        //Programme = model.Programme,
+                        ProgrammeId = model.ProgrammeID,
                         AdmissionDate = DateTime.Now,
                     };
                     db.Students.Add(newstudent);
@@ -396,13 +398,13 @@ namespace Topscholars.Controllers
         {
             try
             {
-                List<SelectListItem> programme = (from c in db.Courses
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = c.Programme.ProgrammeName,
-                                                      Value = c.Programme.ProgrammeId.ToString(),
-                                                  }).ToList();
-                ViewBag.Programme = programme;
+                //List<SelectListItem> programme = (from p in db.Programme
+                //                                  select new SelectListItem
+                //                                  {
+                //                                      Text = p.ProgrammeName,
+                //                                      Value = p.ProgrammeId.ToString(),
+                //                                  }).ToList();
+                ViewBag.Programme = new SelectList(db.Programme, "ProgrammeId", "ProgrammeName"); ;
                 var student = (from s in db.Students
                                where s.StudentId == id
                                select new StudentModel
@@ -410,6 +412,7 @@ namespace Topscholars.Controllers
                                    ID = s.StudentId,
                                    Name = s.Users.FullName,
                                    Email = s.Users.Email,
+                                   ProgrammeID = s.ProgrammeId,
                                    Programme = s.Programme.ProgrammeName,
                                    RollNumber = s.RollNumber,
                                    ContactNumber = s.ContactNumber,
@@ -494,6 +497,7 @@ namespace Topscholars.Controllers
                                    ID = c.CourseId,
                                    Name = c.CourseName,
                                    Description = c.CourseDescription,
+                                   ProgrammeID = c.ProgrammeId,
                                    Programme = c.Programme.ProgrammeName,
                                    Credit = c.Credits,
                                    FacultyID = c.FacultyId,
@@ -507,6 +511,7 @@ namespace Topscholars.Controllers
             }
         }
 
+        [HttpPost]
         public ActionResult AddCourses(CoursesModel model)
         {
             try
@@ -525,7 +530,7 @@ namespace Topscholars.Controllers
                         CourseName = model.Name,
                         CourseDescription = model.Description,
                         Credits = model.Credit,
-                        //Programme = model.Programme,
+                        ProgrammeId = model.ProgrammeID,
                         FacultyId = model.FacultyID                        
                     };
                     db.Courses.Add(newcourse);
@@ -551,6 +556,7 @@ namespace Topscholars.Controllers
                                {
                                    ID = c.CourseId,
                                    Name = c.CourseName,
+                                   ProgrammeID = c.ProgrammeId,
                                    Description = c.CourseDescription,
                                    Programme = c.Programme.ProgrammeName,
                                    Credit = c.Credits,

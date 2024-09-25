@@ -200,6 +200,8 @@
     <Content Include="Content\dataTables.dataTables.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Styles1.css" />
+    <Content Include="Content\Styles.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -272,10 +274,18 @@
     <Content Include="Views\Student\Feedback.cshtml" />
     <Content Include="Views\Student\Timetable.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Faculty\ViewAssignments.cshtml" />
+    <Content Include="Views\Faculty\CreateAssignment.cshtml" />
+    <Content Include="Views\Faculty\Feedback.cshtml" />
+    <Content Include="Views\Faculty\ViewTimetable.cshtml" />
+    <Content Include="Views\Faculty\DeleteAssignment.cshtml" />
+    <Content Include="Views\Faculty\EditAssignment.cshtml" />
+    <Content Include="Views\Faculty\Index.cshtml" />
+    <Content Include="Views\Shared\_MenuLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Faculty\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

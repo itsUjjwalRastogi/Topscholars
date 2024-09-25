@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "ViewAssignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Topscholars.Models.Assignments>
+
+<h2>Your Assignments</h2>
+
+<a href="@Url.Action("CreateAssignment")" class="btn btn-primary">Create New Assignment</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+            <th>Course</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var assignment in Model)
+        {
+            <tr>
+                <td>@assignment.Title</td>
+                <td>@assignment.DueDate.ToString("yyyy-MM-dd")</td>
+                <td>@assignment.Courses.CourseName</td>
+                <td>
+                    <a href="@Url.Action("EditAssignment", new { id = assignment.AssignmentId })">Edit</a> |
+                    <a href="@Url.Action("DeleteAssignment", new { id = assignment.AssignmentId })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
