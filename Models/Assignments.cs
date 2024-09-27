@@ -14,6 +14,12 @@ namespace Topscholars.Models
     
     public partial class Assignments
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Assignments()
+        {
+            this.Documents = new HashSet<Documents>();
+        }
+    
         public int AssignmentId { get; set; }
         public int CourseId { get; set; }
         public int FacultyId { get; set; }
@@ -23,5 +29,7 @@ namespace Topscholars.Models
     
         public virtual Courses Courses { get; set; }
         public virtual Faculty Faculty { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Documents> Documents { get; set; }
     }
 }

@@ -11,6 +11,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     color: #34495e;
+    text-align: center;
 }
 
 a {
@@ -241,4 +242,18 @@ table {
 
 .card .btn {
     margin-top: 1rem;
+}
+
+
+div.card {
+    margin: 20px;
+    align-items: center;
+}
+
+    div.card > a {
+        width: 208px !important;
+    }
+
+.row {
+    place-content: center;
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects.DataClasses;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -137,14 +138,17 @@ namespace Topscholars.Controllers
             try
             {
                 var faculty = db.Faculty.Find(id);
-                var users = db.Users.Find(faculty.UserId);
-                db.Faculty.Remove(faculty);
-                db.Entry(faculty).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
-                db.Users.Remove(users);
-                db.Entry(users).State = System.Data.Entity.EntityState.Deleted;
-                db.SaveChanges();
-                TempData["Message"] = "Deleted";
+                if (faculty != null)
+                {
+                    var users = db.Users.Find(faculty.UserId);
+                    db.Faculty.Remove(faculty);
+                    db.Entry(faculty).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                    db.Users.Remove(users);
+                    db.Entry(users).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                    TempData["Message"] = "Deleted";
+                }
                 return RedirectToAction("ManageFaculty");
             }
             catch (Exception e)
@@ -167,8 +171,8 @@ namespace Topscholars.Controllers
                                      CourseID = x.CourseId,
                                      CourseName = x.Courses.CourseName,
                                      Day = x.DayOfWeek,
-                                     StartTime = x.StartTime.ToString(),
-                                     EndTime = x.EndTime.ToString(),
+                                     StartTime = x.StartTime,
+                                     EndTime = x.EndTime,
                                  }).ToList();
                 return View(timetable);
             }
@@ -189,7 +193,8 @@ namespace Topscholars.Controllers
                     timetable.FacultyId = model.FacultyID;
                     timetable.CourseId = model.CourseID;
                     timetable.DayOfWeek = model.Day;
-                    timetable.StartTime = TimeSpan.Parse(model.StartTime);
+                    timetable.StartTime = model.StartTime;
+                    timetable.EndTime = model.StartTime.Add(TimeSpan.FromHours(1));
                     db.Entry(timetable).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     TempData["Message"] = "Updated";
@@ -201,11 +206,11 @@ namespace Topscholars.Controllers
                         CourseId = model.CourseID,
                         DayOfWeek = model.Day,
                         FacultyId = model.FacultyID,
-                        StartTime = TimeSpan.Parse(model.StartTime),
-                        EndTime = TimeSpan.Parse(model.StartTime).Add(TimeSpan.FromHours(1))
+                        StartTime = model.StartTime,
+                        EndTime = model.StartTime.Add(TimeSpan.FromHours(1))
                     };
                     db.Timetable.Add(newtimetable);
-                    db.Entry(timetable).State = System.Data.Entity.EntityState.Added;
+                    db.Entry(newtimetable).State = System.Data.Entity.EntityState.Added;
                     db.SaveChanges();
                     TempData["Message"] = "Created";
                 }
@@ -253,8 +258,8 @@ namespace Topscholars.Controllers
                                      CourseID = x.CourseId,
                                      CourseName = x.Courses.CourseName,
                                      Day = x.DayOfWeek,
-                                     StartTime = x.StartTime.ToString(),
-                                     EndTime = x.EndTime.ToString(),
+                                     StartTime = x.StartTime,
+                                     EndTime = x.EndTime,
                                  }).FirstOrDefault();
                 if (timetable != null)
                 {
@@ -339,6 +344,7 @@ namespace Topscholars.Controllers
             }
         }
 
+        [HttpPost]
         public ActionResult AddStudents(StudentModel model)
         {
             try
@@ -372,6 +378,7 @@ namespace Topscholars.Controllers
                     db.Entry(newusers).State = System.Data.Entity.EntityState.Added;
                     db.SaveChanges();
                     var users = db.Users.Where(x => x.Email == newusers.Email).FirstOrDefault();
+                    var maxRollNumber = db.Students.Max(x => x.RollNumber);
                     Students newstudent = new Students
                     {
                         UserId = users.UserId,
@@ -380,6 +387,7 @@ namespace Topscholars.Controllers
                         DateOfBirth = model.DOB,
                         ProgrammeId = model.ProgrammeID,
                         AdmissionDate = DateTime.Now,
+                        RollNumber = maxRollNumber + 1,
                     };
                     db.Students.Add(newstudent);
                     db.Entry(newstudent).State = System.Data.Entity.EntityState.Added;
@@ -404,7 +412,7 @@ namespace Topscholars.Controllers
                 //                                      Text = p.ProgrammeName,
                 //                                      Value = p.ProgrammeId.ToString(),
                 //                                  }).ToList();
-                ViewBag.Programme = new SelectList(db.Programme, "ProgrammeId", "ProgrammeName"); ;
+                ViewBag.Programme = new SelectList(db.Programme, "ProgrammeId", "ProgrammeName");
                 var student = (from s in db.Students
                                where s.StudentId == id
                                select new StudentModel
@@ -491,7 +499,7 @@ namespace Topscholars.Controllers
             try
             {
                 var courses = (from c in db.Courses
-                               orderby c.Programme
+                               orderby c.ProgrammeId
                                select new CoursesModel
                                {
                                    ID = c.CourseId,
@@ -519,19 +527,23 @@ namespace Topscholars.Controllers
                 var course = db.Courses.Find(model.ID);
                 if (course != null)
                 {
+                    course.CourseName = model.Name;
+                    course.CourseDescription = model.Description;
+                    course.Credits = model.Credit;
                     course.FacultyId = model.FacultyID;
                     db.Entry(course).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();                    
+                    db.SaveChanges();
                     TempData["Message"] = "Updated";
                 }
                 else
                 {
-                    var newcourse = new Courses { 
+                    var newcourse = new Courses
+                    {
                         CourseName = model.Name,
                         CourseDescription = model.Description,
                         Credits = model.Credit,
                         ProgrammeId = model.ProgrammeID,
-                        FacultyId = model.FacultyID                        
+                        FacultyId = model.FacultyID
                     };
                     db.Courses.Add(newcourse);
                     db.Entry(newcourse).State = System.Data.Entity.EntityState.Added;
@@ -550,6 +562,8 @@ namespace Topscholars.Controllers
         {
             try
             {
+                ViewBag.Programme = new SelectList(db.Programme, "ProgrammeId", "ProgrammeName");
+                ViewBag.Faculty = new SelectList(db.Faculty, "FacultyId", "Users.FullName");
                 var courses = (from c in db.Courses
                                where c.CourseId == id
                                select new CoursesModel
@@ -563,7 +577,7 @@ namespace Topscholars.Controllers
                                    FacultyID = c.FacultyId,
                                    FacultyName = c.Faculty.Users.FullName,
                                }).FirstOrDefault();
-                if(courses != null)
+                if (courses != null)
                 {
                     return View(courses);
                 }
@@ -585,6 +599,93 @@ namespace Topscholars.Controllers
                 db.SaveChanges();
                 TempData["Message"] = "Deleted";
                 return RedirectToAction("ManageCourses");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult ManageProgramme()
+        {
+            try
+            {
+                var programme = db.Programme.ToList();
+                return View(programme);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult EditProgramme(int? id)
+        {
+            try
+            {
+                var programme = db.Programme.Find(id);
+                if (programme != null)
+                {
+                    return View(programme);
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddProgramme(Programme model)
+        {
+            try
+            {
+                var programme = db.Programme.Find(model.ProgrammeId);
+                if (programme != null)
+                {
+                    programme.ProgrammeName = model.ProgrammeName;
+                    db.Entry(programme).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    TempData["Message"] = "Updated";
+                }
+                else
+                {
+                    var newprogramme = new Programme
+                    {
+                        ProgrammeName = model.ProgrammeName,
+                    };
+                    db.Programme.Add(newprogramme);
+                    db.Entry(newprogramme).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    TempData["Message"] = "Created";
+                }
+                return RedirectToAction("ManageProgramme");
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
+        public ActionResult DeleteProgramme(int id)
+        {
+            try
+            {
+                var programme = db.Programme.Find(id);
+                var courses = db.Courses.Where(x => x.ProgrammeId == id).Count();
+                if (programme != null && courses == 0)
+                {
+                    db.Programme.Remove(programme);
+                    db.Entry(programme).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                    TempData["Message"] = "Deleted";
+                }
+                else
+                {
+                    TempData["Message"] = "DeleteError";
+                }
+                return RedirectToAction("ManageProgramme");
             }
             catch (Exception e)
             {

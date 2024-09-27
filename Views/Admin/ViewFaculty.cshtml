@@ -1,51 +1,60 @@
 ﻿@model Topscholars.Models.FacultyModel
 
 @{
-    ViewBag.Title = "ViewFaculty";
+    ViewBag.Title = "View Faculty";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewFaculty</h2>
+<h2>View Faculty</h2>
 
 <div>
-    <h4>Faculty</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 card">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Department)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Department)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Department)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.JoiningDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.JoiningDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.JoiningDate)
-        </dd>
+                <dd>
+                    @if (Model.JoiningDate != null)
+                    {
+                        @Model.JoiningDate.ToString("d-MMMM-yyyy");
+                    }
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "EditFaculty", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "ManageFaculty")
+<p class="ActionButton">
+    @Html.ActionLink("Edit", "EditFaculty", new { id = Model.ID }, new { @class = "btn btn-primary"})
+    &nbsp;
+    @Html.ActionLink("Back to List", "ManageFaculty",null, new { @class = "btn btn-secondary" })
 </p>

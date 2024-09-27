@@ -4,23 +4,60 @@
     Layout = "~/Views/Shared/_MenuLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h1>Admin Panel</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("ManageFaculty", "Admin")">
+                <i class="fa-solid fa-chalkboard-user fa-5x"></i>
+                <br />
+                <br />
+                <b>Manage Faculty</b>
+            </a>
+        </div>
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("ManageStudent", "Admin")">
+                <i class="fa-solid fa-user-graduate fa-5x"></i>
+                <br />
+                <br />
+                <b>Manage Student</b>
+            </a>
+        </div>
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("Timetable", "Admin")">
+                <i class="fa-solid fa-calendar-days fa-5x"></i>
+                <br />
+                <br />
+                <b>TimeTable</b>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("ManageProgramme", "Admin")">
+                <i class="fa-solid fa-graduation-cap fa-5x"></i>
+                <br />
+                <br />
+                <b>Manage Programme</b>
+            </a>
+        </div>
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("ManageCourses", "Admin")">
+                <i class="fa-solid fa-book fa-5x"></i>
+                <br />
+                <br />
+                <b>Manage Courses</b>
+            </a>
+        </div>
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("Feedback", "Admin")">
+                <i class="fa-solid fa-comments fa-5x"></i>
+                <br />
+                <br />
+                <b>Feedback</b>
+            </a>
+        </div>
+    </div>
+</div>
 
-<ul>
-    <li>
-        <a href="@Url.Action("ManageFaculty", "Admin")">Manage Faculty</a>
-    </li>
-    <li>
-        <a href="@Url.Action("ManageStudent", "Admin")">Manage Student</a>
-    </li>
-    <li>
-        <a href="@Url.Action("Feedback", "Admin")">Feedback</a>
-    </li>
-    <li>
-        <a href="@Url.Action("Timetable", "Admin")">TimeTable</a>
-    </li>
-    <li>
-        <a href="@Url.Action("ManageCourses", "Admin")">Manage Faculty</a>
-    </li>
-</ul>
 

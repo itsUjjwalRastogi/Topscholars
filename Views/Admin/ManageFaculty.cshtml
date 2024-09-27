@@ -1,60 +1,74 @@
 ﻿@model IEnumerable<Topscholars.Models.Faculty>
 
 @{
-    ViewBag.Title = "ManageFaculty";
+    ViewBag.Title = "Manage Faculty";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ManageFaculty</h2>
+<h2>Manage Faculty</h2>
 
 <p>
-    @Html.ActionLink("Create New", "EditFaculty")
+    @Html.ActionLink("Create New", "EditFaculty", null, new { @class = "btn btn-success" })
+    &nbsp;
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-secondary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Department)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JoiningDate)
-        </th>
+<div class="row"> 
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10" style="overflow-y:auto;">
+        <table class="dataTable table table-striped hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Users.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Users.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Department)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.JoiningDate)
+                </th>
+                <th colspan="3">
+                    Actions
+                </th>
+            </tr>
 
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Users.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Users.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+                    <td>
+                        @if (item.JoiningDate != null)
+                        {
+                            @item.JoiningDate.ToString("d-MMMM-yyyy");
+                        }
+                    </td>
+                    <td class="Action">
+                        <a class="btn btn-primary" href="@Url.Action("EditFaculty","Admin")?id=@item.FacultyId"><i class="fa-solid fa-pen"></i> Edit</a>
+                    </td>
+                    <td class="Action">
+                        <a class="btn btn-info" href="@Url.Action("ViewFaculty","Admin")?id=@item.FacultyId"><i class="fa-solid fa-circle-info"></i> Details</a>
+                    </td>
+                    <td class="Action">
+                        <a class="btn btn-danger" href="@Url.Action("DeleteFaculty","Admin")?id=@item.FacultyId"><i class="fa-solid fa-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            }
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Users.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Users.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JoiningDate)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "EditFaculty", new { id = item.FacultyId }) |
-                @Html.ActionLink("Details", "ViewFaculty", new { id = item.FacultyId }) |
-                @Html.ActionLink("Delete", "DeleteFaculty", new { id = item.FacultyId })
-            </td>
-        </tr>
-    }
-
-</table>
-
-<script type="text/javascript">
+        </table>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+<script type="text/javascript"> 
     $(document).ready(function () {
         var message = "@TempData["Message"]";
         if (message == "Created") {

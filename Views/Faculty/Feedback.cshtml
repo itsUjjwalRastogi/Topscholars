@@ -1,20 +1,41 @@
-﻿
+﻿@model Topscholars.Models.Feedback
+
 @{
-    ViewBag.Title = "ViewAssignments";
+    ViewBag.Title = "Submit Feedback";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model Topscholars.Models.Feedback
 
-<h2>Provide Feedback</h2>
+<h2>Submit Feedback</h2>
 
-@using (Html.BeginForm("SubmitFeedback","Student",FormMethod.Post))
+@using (Html.BeginForm("SubmitFeedback", "Faculty", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-group">
-        <label for="Comments">Your Feedback</label>
-        @Html.TextAreaFor(m => m.FeedbackText, new { @class = "form-control", rows = 5 })
-    </div>
+    <div class="form-horizontal">
+        <hr />
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 card">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.FeedbackText, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FeedbackText, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FeedbackText, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
 }
+
+<p class="ActionButton">
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-secondary" })
+</p>

@@ -29,6 +29,7 @@
         <EntityTypeShape EntityType="topscholarsModel.Programme" Width="1.5" PointX="3.375" PointY="0.875" />
         <AssociationConnector Association="topscholarsModel.FK__Courses__Program__2CBDA3B5" />
         <AssociationConnector Association="topscholarsModel.FK__Students__Progra__2BC97F7C" />
+        <AssociationConnector Association="topscholarsModel.FK__Documents__Assig__42ACE4D4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

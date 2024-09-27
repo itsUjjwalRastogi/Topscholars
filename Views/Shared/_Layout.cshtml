@@ -3,55 +3,122 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/font-awesome.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="~/Content/dataTables.dataTables.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <script src="~/Scripts/sweetalert2.all.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <link rel="stylesheet" href="~/Content/styles1.css" />
+    <script src="~/Content/fontawesome/js/fontawesome.js"></script>
+    <script src="~/Content/fontawesome/js/fontawesome.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <style type="text/css">
+        p.ActionButton{
+            align-self:center;
+        }
+        .control-label {
+            align-content: center;
+        }
+        .form-control{
+            margin-bottom: 4px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+            .card:hover {
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+
+        .card .btn {
+            margin-top: 1rem;
+        }
+        body {
+            overflow-x: clip;
+            overflow-y: clip;
+        }
+
+        .sidenav {
+            width: 304px;
+            position: fixed;
+            top: auto;
+            left: 0;
+            background-color: white;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+            .sidenav a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                transition: 0.3s;
+            }
+
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            color: #34495e;
+            text-align: center;
+        }
+
+        table {
+            width: fit-content;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+            table th {
+                text-align: center;
+            }
+
+            td.Action {
+                text-align: center;
+                width: 1%;
+                white-space: nowrap;
+            }
+    </style>
 </head>
 <body>
-    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div>
-                <a class="navbar-brand" href="@Url.Action("Index")"><img src="~/Images/Logo_Circle.png" width="40px" height="40px" />&ensp;WebScholar</a>
-            </div>
-            <div>
-
-            </div>
-        </nav>*@
-    @*<nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="~/Images/Logo_Circle.png" alt="Logo" width="40" height="40" class="d-inline-block">
-                    &ensp;WebScholar
-                </a>
-            </div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </nav>*@
     <nav class="navbar navbar-dark bg-dark ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="~/Images/Logo_Circle.png" alt="Logo" width="40" height="40">&ensp;WebScholar
+                <img src="~/Images/Logo_Circle.png" alt="Logo" width="40" height="40">&ensp;TopScholar
             </a>
 
             @if (User.Identity.IsAuthenticated)
             {
                 <div class="d-flex ">
-                    <a class="btn btn navbar-brand">@User.Identity.Name</a>
+                    <a href="@Url.Action("Index", Session["Role"].ToString())" class="btn btn navbar-brand">@User.Identity.Name</a>
                 </div>
-            }
-            else
-            {
                 <div class="d-flex ">
-                    <a class="btn btn navbar-brand">UserName</a>
+                    <a href="@Url.Action("Logout","Account")" class="btn btn navbar-brand">Logout</a>
                 </div>
             }
 
@@ -60,14 +127,83 @@
     </nav>
     <div class="row" style="height:100vh;">
         <div class="col-sm-2" style="border-right:solid;">
-
+            <div id="mySidenav" class="sidenav row">
+                <div class="row">
+                    <a class="form-group" href="@Url.Action("ManageFaculty", "Admin")">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="fa-solid fa-chalkboard-user fa-2x"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <b>Manage Faculty</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <a class="form-group" href="@Url.Action("ManageStudent", "Admin")">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="fa-solid fa-user-graduate fa-2x"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <b>Manage Student</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <a class="form-group" href="@Url.Action("Timetable", "Admin")">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="fa-solid fa-calendar-days fa-2x"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <b>TimeTable</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <a class="form-group" href="@Url.Action("ManageProgramme", "Admin")">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="fa-solid fa-graduation-cap fa-2x"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <b>Manage Programme</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <a class="form-group" href="@Url.Action("ManageCourses", "Admin")">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="fa-solid fa-book fa-2x"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <b>Manage Courses</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <a class="form-group" href="@Url.Action("Feedback", "Admin")">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="fa-solid fa-comments fa-2x"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <b>Feedback</b>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="container body-content col-sm-10">
+        <div class=" body-content col-sm-10 card">
             @RenderBody()
-            <hr />
-            @*<footer>
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                </footer>*@
         </div>
     </div>
 </body>

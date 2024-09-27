@@ -62,7 +62,6 @@ namespace Topscholars.Controllers
                         {
                             Document = fileData,
                             UserId = userid,
-                            Type = "Assignment",
                             DocumentName = file.FileName,
                             DocumentType = file.ContentType,
                         };
@@ -125,6 +124,26 @@ namespace Topscholars.Controllers
             }
         }
 
+        public ActionResult ViewResult()
+        {
+            try
+            {
+                var userID = Convert.ToInt16(Session["UserId"].ToString());
+                var result = (from r in db.Results
+                              from s in db.Students
+                              where s.UserId == userID
+                              where s.StudentId == r.StudentId
+                              select r
+                              ).ToList();
+                
+                return View(result);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Error", "Error", e);
+            }
+        }
+
         public ActionResult Timetable()
         {
             try
@@ -144,8 +163,8 @@ namespace Topscholars.Controllers
                                      CourseName = t.Courses.CourseName,
                                      FacultyName = t.Faculty.Users.FullName,
                                      Day = t.DayOfWeek,
-                                     StartTime = t.StartTime.ToString(),
-                                     EndTime = t.EndTime.ToString(),
+                                     StartTime = t.StartTime,
+                                     EndTime = t.EndTime,
                                  }
                                  ).ToList();
                 return View(timetable);

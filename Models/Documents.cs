@@ -16,11 +16,12 @@ namespace Topscholars.Models
     {
         public int DocumentId { get; set; }
         public int UserId { get; set; }
-        public string Type { get; set; }
         public byte[] Document { get; set; }
         public string DocumentName { get; set; }
         public string DocumentType { get; set; }
+        public int AssignmentId { get; set; }
     
         public virtual Users Users { get; set; }
+        public virtual Assignments Assignments { get; set; }
     }
 }

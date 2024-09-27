@@ -1,30 +1,61 @@
-﻿
+﻿@model IEnumerable<Topscholars.Models.TimetableModel>
+
 @{
-    ViewBag.Title = "ViewAssignments";
+    ViewBag.Title = "Timetable";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<Topscholars.Models.TimetableModel>
 
 <h2>Your Timetable</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th>Day</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Course</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var schedule in Model)
-        {
+<p>
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-secondary" })
+</p>
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10" style="overflow-y:auto;">
+        <table class="dataTable table table-striped hover">
             <tr>
-                <td>@schedule.Day</td>
-                <td>@schedule.StartTime</td>
-                <td>@schedule.EndTime</td>
-                <td>@schedule.CourseName</td>
+                <th>
+                    @Html.DisplayNameFor(model => model.CourseName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Day)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Day)
+                    </td>
+                    <td>
+                        @if (item.StartTime != null)
+                        {
+                            @item.StartTime.ToString("hh\\:mm");
+                        }
+                    </td>
+                    <td>
+                        @if (item.EndTime != null)
+                        {
+                            @item.EndTime.ToString("hh\\:mm");
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+
+

@@ -23,8 +23,8 @@ namespace Topscholars.Models
     
         public int StudentId { get; set; }
         public int UserId { get; set; }
-        public string RollNumber { get; set; }
-        public int ContactNumber { get; set; }
+        public decimal RollNumber { get; set; }
+        public decimal ContactNumber { get; set; }
         public System.DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
         public System.DateTime AdmissionDate { get; set; }

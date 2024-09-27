@@ -1,64 +1,74 @@
-﻿@model Topscholars.Models.Timetable
+﻿@model Topscholars.Models.TimetableModel
 
 @{
-    ViewBag.Title = "EditEntry";
+    ViewBag.Title = "Edit Entry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditEntry</h2>
+<h2>Edit Entry</h2>
 
-@using (Html.BeginForm("AddEntry","Admin",FormMethod.Post))
+@using (Html.BeginForm("AddEntry", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Timetable</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.TimetableId)
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 card">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseId, "CourseId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CourseId", (IEnumerable<SelectListItem>)ViewBag.Courses, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.CourseID, "Course", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CourseID", (IEnumerable<SelectListItem>)ViewBag.Courses, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CourseID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FacultyId, "FacultyId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("FacultyId", (IEnumerable<SelectListItem>)ViewBag.Faculty, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FacultyId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.FacultyID, "Faculty", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("FacultyID", (IEnumerable<SelectListItem>)ViewBag.Faculty, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FacultyID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DayOfWeek, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DayOfWeek, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.DropDownList("DayOfWeek", (IEnumerable<SelectListItem>)ViewBag.days, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DayOfWeek, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Day, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Day", (IEnumerable<SelectListItem>)ViewBag.days, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Day, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" ,@type = "time"} })
-                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger"})
-                @Html.
-            </div>
-        </div>        
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (Model != null)
+                        {
+                            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @type = "time" , @value = Model.StartTime.ToString("hh\\:mm")} })
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                        }
+                        @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
+            <div class="col-sm-3"></div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<p class="ActionButton">
+    @Html.ActionLink("Back to List", "Timetable", null, new { @class = "btn btn-secondary" })
+</p>

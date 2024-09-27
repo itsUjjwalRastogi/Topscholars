@@ -17,8 +17,18 @@ namespace Topscholars.Controllers
 
         public ActionResult Login(Users model)
         {
-            model.Email = "johndoe@university.com";
-            model.Password = "hashedpassword2";
+
+            //model.Email = "admin1@university.com";
+            //model.Email = "johndoe@university.com";
+            model.Email = "janesmith@university.com";
+            //model.Email = "alice@university.com";
+            //model.Email = "bob@university.com";
+
+            //model.Password = "hashedpassword1";
+            //model.Password = "hashedpassword2";
+            model.Password = "hashedpassword3";
+            //model.Password = "hashedpassword4";
+            //model.Password = "hashedpassword5";
             if (model.Email != null && model.Password != null)
             {
                 var user = db.Users.Where(x => x.Email == model.Email).FirstOrDefault();
@@ -27,7 +37,7 @@ namespace Topscholars.Controllers
                     FormsAuthentication.SetAuthCookie(user.FullName, false);
                     Session["UserID"] = user.UserId;
                     Session["Role"] = user.Role;
-                    return RedirectToAction("Index", "Faculty");
+                    return RedirectToAction("Index", user.Role);
                 }
             }
             return View();

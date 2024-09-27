@@ -42,8 +42,10 @@ namespace Topscholars.Controllers
         {
             try
             {
+                var userid = Convert.ToInt32(Session["UserID"].ToString());
+                ViewBag.Courses = new SelectList(db.Courses.Where(x=>x.Faculty.UserId == userid).ToList(), "CourseId", "CourseName");
                 var assignment = db.Assignments.Find(id);
-                if (id == null)
+                if (assignment != null)
                 {
                     return View(assignment);
                 }
@@ -55,11 +57,21 @@ namespace Topscholars.Controllers
             }
         }
 
-        public ActionResult ViewAssignment(int id)
+        public ActionResult CheckSubmission(int id)
         {
             try
             {
-                var assignment = db.Assignments.Find(id);
+                var assignment = (from d in db.Documents
+                                  from s in db.Students
+                                  where d.UserId == s.UserId
+                                  where d.AssignmentId == id
+                                  select new AssignmentModel
+                                  {
+                                      DocumentID = d.DocumentId,
+                                      StudentName = s.Users.FullName,
+                                      RollNumber = s.RollNumber,
+                                  }
+                                  ).ToList();
                 return View(assignment);
             }
             catch (Exception e)
@@ -90,6 +102,7 @@ namespace Topscholars.Controllers
         {
             try
             {
+                var userid = Convert.ToInt32(Session["UserID"].ToString());
                 var assignment = db.Assignments.Find(model.AssignmentId);
                 if(assignment != null)
                 {
@@ -102,12 +115,13 @@ namespace Topscholars.Controllers
                 }
                 else
                 {
+                    var faculty = db.Faculty.Where(x => x.UserId == userid).FirstOrDefault();
                     var newassignment = new Assignments
                     {
                         Description = model.Description,
                         CourseId = model.CourseId,
                         DueDate = model.DueDate,
-                        FacultyId = model.FacultyId,
+                        FacultyId = faculty.FacultyId,
                         Title = model.Title,
                     };
                     db.Assignments.Add(newassignment);
@@ -141,8 +155,8 @@ namespace Topscholars.Controllers
                                  CourseName = t.Courses.CourseName,
                                  FacultyName = t.Faculty.Users.FullName,
                                  Day = t.DayOfWeek,
-                                 StartTime = t.StartTime.ToString(),
-                                 EndTime = t.EndTime.ToString(),
+                                 StartTime = t.StartTime,
+                                 EndTime = t.EndTime,
                              }).ToList();
             return View(timetable);
         }

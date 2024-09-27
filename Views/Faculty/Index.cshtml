@@ -4,22 +4,49 @@
     Layout = "~/Views/Shared/_MenuLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h1>Faculty Panel</h1>
 
-<ul>
-    <li>
-        <a href="@Url.Action("ViewAssignments", "Faculty")">View Assignment</a>
-    </li>
-    <li>
-        <a href="@Url.Action("CreateAssignment", "Faculty")">Create Assignment</a>
-    </li>
-    <li>
-        <a href="@Url.Action("ViewTimetable", "Faculty")">TimeTable</a>
-    </li>
-    <li>
-        <a href="@Url.Action("ProvideFeedback", "Faculty")">Feedback</a>
-    </li>
-    <li>
-        <a href="@Url.Action("ManageCourses", "Admin")">Manage Faculty</a>
-    </li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("ManageAssignment", "Faculty")">
+                <i class="fa-solid fa-file-lines fa-5x"></i>
+                <br />
+                <br />
+                <b>Manage Assignment</b>
+            </a>
+        </div>
+
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("ViewTimetable", "Faculty")">
+                <i class="fa-solid fa-calendar-days fa-5x"></i>
+                <br />
+                <br />
+                <b>TimeTable</b>
+            </a>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("ManageResult", "Faculty")">
+                <i class="fa-solid fa-chart-line fa-5x"></i>
+                <br />
+                <br />
+                <b>Manage Result</b>
+            </a>
+        </div>
+
+        <div class="col-sm-3 card">
+            <a class="form-group btn btn-light" href="@Url.Action("Feedback", "Faculty")">
+                <i class="fa-solid fa-comments fa-5x"></i>
+                <br />
+                <br />
+                <b>Submit Feedback</b>
+            </a>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>

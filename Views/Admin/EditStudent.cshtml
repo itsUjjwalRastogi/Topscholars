@@ -1,78 +1,109 @@
 ﻿@model Topscholars.Models.StudentModel
 
 @{
-    ViewBag.Title = "EditStudent";
+    ViewBag.Title = "Edit Student";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditStudent</h2>
+<h2>Edit Student</h2>
 
-@using (Html.BeginForm("AddStudent", "Admin", FormMethod.Post))
+@using (Html.BeginForm("AddStudents", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Students</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 card">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Programme, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Programme", (IEnumerable<SelectListItem>)ViewBag.Programme, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Programme, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Programme, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("ProgrammeID", (IEnumerable<SelectListItem>)ViewBag.Programme, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ProgrammeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ContactNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ContactNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @if (Model != null)
+                        {
+                            @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control", @type = "number" , @value = Model.ContactNumber.ToString("0")} })
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @if (Model != null)
+                        {
+                            <input type="hidden" id="HiddenDOB" value="@Model.DOB.ToString("yyyy-MM-dd")" />
+                            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        }
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
+            <div class="col-sm-3"></div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "ManageStudent")
-</div>
+<p class="ActionButton">
+    @Html.ActionLink("Back to List", "ManageStudent", null, new { @class = "btn btn-secondary" })
+</p>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var date = $('#HiddenDOB').val();
+        if (date != null) {
+            $('#DOB').val(date);
+        }
+    });
+</script>

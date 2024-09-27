@@ -13,7 +13,7 @@ namespace Topscholars.Models
         public int CourseID { get; set; }
         public string CourseName { get; set; }
         public string Day {  get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
     }
 }

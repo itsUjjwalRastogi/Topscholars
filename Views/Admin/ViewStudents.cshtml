@@ -1,83 +1,95 @@
 ﻿@model Topscholars.Models.StudentModel
 
 @{
-    ViewBag.Title = "ViewStudents";
+    ViewBag.Title = "View Students";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewStudents</h2>
+<h2>View Students</h2>
 
 <div>
-    <h4>StudentModel</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 card">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Programme)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Programme)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Programme)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Programme)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RollNumber)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RollNumber)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RollNumber)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.RollNumber)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactNumber)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContactNumber)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactNumber)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ContactNumber)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DOB)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DOB)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DOB)
-        </dd>
+                <dd>
+                    @if (Model.DOB != null)
+                    {
+                        @Model.DOB.ToString("d-MMMM-yyyy");
+                    }
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AdmissionDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AdmissionDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AdmissionDate)
-        </dd>
+                <dd>
+                    @if (Model.AdmissionDate != null)
+                    {
+                        @Model.AdmissionDate.ToString("d-MMMM-yyyy");
+                    }
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+    </div>
+    <div class="col-sm-3"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "EditStudent", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "ManageStudent")
+<p class="ActionButton">
+    @Html.ActionLink("Edit", "EditStudent", new { id = Model.ID }, new { @class = "btn btn-primary" })
+    &nbsp;
+    @Html.ActionLink("Back to List", "ManageStudent", null, new { @class = "btn btn-secondary" })
 </p>
